@@ -30,8 +30,8 @@ bip = "/home/jan/Documents/autovision/blender/backgrounds/bckgrnds_edited/"
 r = re.compile(".*png")
 imgs = list(filter(r.match, [f for f in os.listdir(bip)]))
 
-need = 5000 # number of needed samples
-fov = 90.0 # camera field of view
+need = 5 # number of needed samples
+fov = 190.0 # camera field of view
 pi = 3.14159265
 scene = bpy.data.scenes["Scene"]
 ########################################

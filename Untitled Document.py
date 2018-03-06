@@ -1,31 +1,11 @@
-import bpy
+import os
 
-# tx = 0.0
-# ty = 0.0
-# tz = 80.0
+train = os.path.join("/media/jan/My Files/autovision/train.txt")
+validate = os.path.join("/media/jan/My Files/autovision/validate.txt")
+with open(train, "w") as file:
+    for i in range(0, 22752):
+        file.write(("/media/jan/My Files/autovision/dataset_export/" + "%06d" + ".png\n") % i)
 
-# rx = 0.0
-# rz = 0.0
-# ry = 0.0
-
-fov = 50.0
-pi = 3.14159265
-scene = bpy.data.scenes["Scene"]
-
-# Set render resolution
-scene.render.resolution_x = 1920
-scene.render.resolution_y = 1080
-
-# Set camera fov in degrees
-scene.camera.data.angle = fov*(pi/180.0)
-
-def cam_rotation(rx, ry, rz):
-    scene.camera.rotation_mode = 'XYZ'
-    scene.camera.rotation_euler[0] = rx*(pi/180.0)
-    scene.camera.rotation_euler[1] = ry*(pi/180.0)
-    scene.camera.rotation_euler[2] = rz*(pi/180.0)
-
-def cam_translation(tx, ty, tz):
-    scene.camera.location.x = tx
-    scene.camera.location.y = ty
-    scene.camera.location.z = tz
+with open(validate, "w") as file:
+    for i in range(22752, 23752):
+        file.write(("/media/jan/My Files/autovision/dataset_export/" + "%06i" + ".png\n") % i)
