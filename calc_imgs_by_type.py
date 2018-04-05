@@ -1,6 +1,8 @@
 import os, fnmatch
+from shutil import copyfile
 
 path = "/media/jan/ubuntuHD/YOLO/yolo_dataset/exported_dataset/"
+path_to_exp = "/media/jan/ubuntuHD/YOLO/yolo_dataset/choosed_dataset/"
 
 cts = {"bulldozer": 0, "excavator": 0, "backhoe": 0,
               "tractor": 0, "truck": 0, "grader": 0, "loader": 0, "car": 0, "person": 0}
@@ -22,6 +24,25 @@ def pt_calc():
     ctspt["loader"] = round(cts["loader"]/all, 3)
     ctspt["car"] = round(cts["car"]/all, 3)
     ctspt["person"] = round(cts["person"]/all, 3)
+
+
+def export(file):
+    file = file.split(".")[0]
+    txtf = open(os.path.join(path + file + ".txt"))
+    dsttxt = os.path.join(path_to_exp + file + ".txt")
+    dstimg = os.path.join(path_to_exp + file + ".png")
+    lines = txtf.readlines()
+    for line in lines:
+        cat = int(line.split(" ")[0])
+        if cat == 1:
+            try:
+                copyfile(os.path.join(path + file + ".png"), dstimg)
+                copyfile(txtf.name, dsttxt)
+            except:
+                print('no such image: ', file)
+
+
+
 
 
 def calc(file):
@@ -54,8 +75,9 @@ files = os.listdir(path)
 
 for file in files:
     if fnmatch.fnmatch(file, pattern):
+        export(file)
         txtf = open(os.path.join(path + file))
         calc(txtf)
 
 pt_calc()
-print(ctspt)
+print(cts)

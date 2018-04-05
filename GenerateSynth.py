@@ -30,8 +30,8 @@ bip = "/home/jan/Documents/autovision/blender/backgrounds/bckgrnds_edited/"
 r = re.compile(".*png")
 imgs = list(filter(r.match, [f for f in os.listdir(bip)]))
 
-need = 5 # number of needed samples
-fov = 190.0 # camera field of view
+need = 1340 # number of needed samples
+fov = 90.0 # camera field of view
 pi = 3.14159265
 scene = bpy.data.scenes["Scene"]
 ########################################
@@ -72,8 +72,8 @@ def capture(position,i):
 
 
 # Set render resolution
-scene.render.resolution_x = 1920
-scene.render.resolution_y = 1080
+scene.render.resolution_x = 800
+scene.render.resolution_y = 600
 
 # Set camera fov in degrees
 scene.camera.data.angle = fov*(pi/180.0)

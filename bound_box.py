@@ -39,6 +39,16 @@ class Box:
             return (0, 0, 0, 0)
         return (self.x, self.y, self.width, self.height)
 
+    def to_tuple_2(self):  # left_upper right_lower
+        if self.width == 0 or self.height == 0:
+            return (0, 0, 0, 0)
+        return (self.x, self.y, self.x +self.width, self.y + self.height)
+
+    def to_tuple_3(self):  # yolo type
+        # if self.width == 0 or self.height == 0:
+        #     return (0, 0, 0, 0)
+        return ((self.x + self.width/2)/self.dim_x, (self.y + self.height/2)/self.dim_y, self.width/self.dim_x, self.height/self.dim_y)
+
 
 def camera_view_bounds_2d(scene, cam_ob, me_ob):
     """
@@ -115,8 +125,10 @@ def clamp(x, minimum, maximum):
 
 def write_bounds_2d(filepath, scene, cam_ob, me_ob, frame_start, frame_end, fname):
     with open(filepath, "w") as file:
+            print(camera_view_bounds_2d(scene, cam_ob, me_ob))
             # bpy.context.scene.frame_set(frame)
-            file.write("%i %i %i %i\n" % camera_view_bounds_2d(scene, cam_ob, me_ob).to_tuple())
+            # add 1 for excavator 6 for loader 0 for dozer 5 for grader
+            file.write("0 %f %f %f %f\n" % camera_view_bounds_2d(scene, cam_ob, me_ob).to_tuple_3())
 
 def main(fname, path):
     filepath = os.path.join(path,fname + ".txt")
