@@ -11,10 +11,10 @@ from xml.etree.cElementTree import Element, SubElement, Comment, tostring
 import xml.etree.cElementTree as ET
 from shutil import copyfile
 import sys
-
-path = "/media/jan/ubuntuHD/YOLO/yolo_dataset/yolo_quadro/autovision_fish_quadro/"
-img_dst_path = "/media/jan/ubuntuHD/YOLO/yolo_dataset/yolo_quadro/autovision_fish_quadro_ds/"
-dst_path = "/media/jan/ubuntuHD/YOLO/yolo_dataset/yolo_quadro/autovision_fish_quadro_annot/"
+path = "/home/jan/Documents/autovision/blender/images/real/all/"
+# path = "/media/jan/ubuntuHD/YOLO/yolo_dataset/yolo_fish/"
+img_dst_path = "/home/jan/ADAS-server/home/user/darknet2.0/yolo_dataset/autovision_fish_ds/"
+dst_path = "/home/jan/ADAS-server/home/user/darknet2.0/yolo_dataset/autovision_fish_annot/"
 annotation_path = "/media/jan/ubuntuHD/YOLO/darknet/data/autovision.names"
 choosed_cat = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
